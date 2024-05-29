@@ -1,1 +1,51 @@
-/* You can add global styles to this file, and also import other style files */
+#hero-section {
+  position: relative;
+  color: #272e5d;
+  background-image: url("assets/img/background.jpeg");
+  background-size: cover ;
+  background-position: top center;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-family: 'Satisfy', cursive;
+  font-size: 80px;
+  color: #5e935e;
+}
+
+h4 {
+  font-size: 1rem;
+}
+
+.p-sub{
+  color: dimgrey;
+  font-style: italic;
+  font-size: 12px;
+}
+
+.btn-primary {
+  border-radius: 1rem;
+  color: white;
+  background-color: #5e935e;
+  border-color: transparent;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.btn-primary:hover {
+  background-color: rgba(94, 147, 94, 0.62);
+  border-color: transparent;
+}
+
+.btn-alert {
+  border-radius: 1rem;
+  color: white;
+  background-color: #daa612;
+  border-color: transparent;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+.footer {
+  background-color: #5e935e;
+  color: #fff;
+  font-family: 'Satisfy', cursive;
+}
