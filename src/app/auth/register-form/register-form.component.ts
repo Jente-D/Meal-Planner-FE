@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import {AuthService} from "../auth.service";
 import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
-import {BrowserModule} from "@angular/platform-browser";
 import {CommonModule} from "@angular/common";
 
 @Component({
@@ -17,6 +16,7 @@ import {CommonModule} from "@angular/common";
 })
 export class RegisterFormComponent {
   registerForm: FormGroup;
+  submitted = false;
 
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.registerForm = this.fb.group({
@@ -33,6 +33,7 @@ export class RegisterFormComponent {
   }
 
   SubmitRegister() {
+    this.submitted = true;
     if (this.registerForm.valid) {
       const formValue = this.registerForm.value;
       this.authService.register(formValue).subscribe(
@@ -48,6 +49,7 @@ export class RegisterFormComponent {
       );
     } else {
       console.error('Form is not valid');
+      this.registerForm.markAllAsTouched();
     }
   }
 }

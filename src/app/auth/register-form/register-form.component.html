@@ -11,32 +11,40 @@
             <label for="exampleInputEmail1"><h5>Email address</h5></label>
             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" formControlName="email">
             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-            <div *ngIf="registerForm.controls['email'].invalid && (registerForm.controls['email'].dirty || registerForm.controls['email'].touched)" class="alert alert-danger">
-              <div *ngIf="registerForm.controls['email'].errors?.['required']">
-                Email is required.
+            @if(registerForm.controls['email'].invalid && submitted){
+              <div class="alert alert-danger mt-3">
+                @if(registerForm.controls['email'].errors?.['required']){
+                  <p>Email is required.</p>
+                }
+                @if(registerForm.controls['email'].errors?.['pattern']){
+                  <p>
+                    Please provide a valid email address.
+                  </p>
+                }
               </div>
-              <div *ngIf="registerForm.controls['email'].errors?.['pattern']">
-                Please provide a valid email address.
-              </div>
-            </div>
+            }
           </div>
           <div class="form-group mt-3">
             <label for="exampleInputPassword1"><h5>Password</h5></label>
             <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" formControlName="password">
-            <div *ngIf="registerForm.controls['password'].invalid && (registerForm.controls['password'].dirty || registerForm.controls['password'].touched)" class="alert alert-danger">
-              <div *ngIf="registerForm.controls['password'].errors?.['required']">
-                Password is required.
-              </div>
-              <div *ngIf="registerForm.controls['password'].errors?.['minlength']">
-                Password must be at least 12 characters long.
-              </div>
-              <div *ngIf="registerForm.controls['password'].errors?.['pattern']">
-                Password must include at least one lowercase letter, one uppercase letter, one digit, and one special character (., ?, !).
-              </div>
+            @if(registerForm.controls['password'].invalid && submitted){
+            <div class="alert alert-danger mt-3">
+              @if(registerForm.controls['password'].errors?.['required']){
+              <p>Password is required.</p>
+              }
+              @if(registerForm.controls['password'].errors?.['minlength']){
+              <p>Password must be at least 12 characters long.</p>
+              }
+              @if(registerForm.controls['password'].errors?.['pattern']){
+              <p> Password must include at least one lowercase letter, one uppercase letter, one digit, and one special character (., ?, !).
+              </p>
+              }
             </div>
+            }
           </div>
           <button type="submit" class="btn btn-alert mt-3">Submit</button>
         </form>
+
       </div>
     </div>
   </div>
