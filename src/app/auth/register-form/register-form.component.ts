@@ -2,12 +2,15 @@ import { Component } from '@angular/core';
 import {AuthService} from "../auth.service";
 import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
+import {BrowserModule} from "@angular/platform-browser";
+import {CommonModule} from "@angular/common";
 
 @Component({
   selector: 'app-register-form',
   standalone: true,
   imports: [
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CommonModule
   ],
   templateUrl: './register-form.component.html',
   styleUrl: './register-form.component.css'
@@ -17,8 +20,8 @@ export class RegisterFormComponent {
 
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.registerForm = this.fb.group({
-      email: new FormControl('', [Validators.required]),
-      password: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required, Validators.minLength(12)]),
     });
   }
 
