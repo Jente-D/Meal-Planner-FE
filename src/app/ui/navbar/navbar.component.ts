@@ -16,14 +16,14 @@ class LogoutStatusService {
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-  constructor(protected authService: AuthService, private router: Router, private logoutStatusService: LogoutService) {}
+  constructor(protected authService: AuthService, private router: Router, private logoutService: LogoutService) {}
 
   LogoutClick(): void{
     this.authService.logout();
-    this.logoutStatusService.changeStatus(true);
+    this.logoutService.changeStatus(true);
     setTimeout(() => {
       this.router.navigate(['/']);
-      this.logoutStatusService.changeStatus(false);
+      this.logoutService.changeStatus(false);
     }, 8000);
   }
 }
