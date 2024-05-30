@@ -55,6 +55,16 @@ h4 {
   font-family: 'Satisfy', cursive;
 }
 
+.btn-outline{
+  border-color: white;
+  color: white;
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
+.d-flex {
+  justify-content: space-between;
+}
 /*PASSWORD*/
 .strength-bar {
   display: flex;
