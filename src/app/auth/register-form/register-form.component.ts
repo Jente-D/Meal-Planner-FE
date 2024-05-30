@@ -20,8 +20,15 @@ export class RegisterFormComponent {
 
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.registerForm = this.fb.group({
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required, Validators.minLength(12)]),
+      email: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[a-zA-Z0-9.\\-_]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$')
+      ]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(12),
+        Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[.?!]).{12,}')
+      ]),
     });
   }
 
