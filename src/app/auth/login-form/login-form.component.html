@@ -1,0 +1,36 @@
+<div class="container-fluid min-vh-100 d-flex justify-content-center align-items-center">
+  <div class="container">
+    <div class="row text-center justify-content-center">
+      <div class="col-12 mb-4">
+        <h1>Login</h1>
+        <h3>and start planning your week!</h3>
+      </div>
+      <div class="col-4 mb-4">
+        <form [formGroup]="loginForm" (ngSubmit)="submitLoginForm()">
+          <div class="form-group justify-content-left">
+            <label for="email"><h5>Email address</h5></label>
+            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" formControlName="email">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          </div>
+          <div class="form-group mt-3">
+            <label for="password"><h5>Password</h5></label>
+            <div class="input-group">
+              <input [type]="passwordHidden ? 'password' : 'text'" class="form-control" id="password" placeholder="Password" formControlName="password">
+              <div class="input-group-append">
+                <button type="button" (click)="togglePasswordVisibility()" class="btn btn-outline-secondary">
+                  {{ passwordHidden ? 'Show' : 'Hide' }}
+                </button>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary mt-3">Sign in</button>
+          <!-- Add this success message div somewhere appropriate in your form -->
+          <div *ngIf="successMessage" class="alert alert-success">
+            {{ successMessage }}
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
