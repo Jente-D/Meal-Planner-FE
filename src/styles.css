@@ -44,7 +44,12 @@ h4 {
 }
 
 
-.footer {
+.footer{
+  background-color: #5e935e;
+  color: #fff;
+  font-family: 'Satisfy', cursive;
+}
+.navbar{
   background-color: #5e935e;
   color: #fff;
   font-family: 'Satisfy', cursive;
@@ -66,3 +71,4 @@ h4 {
 .strength-bar div.filled {
   background-color: #5e935e;
 }
+
