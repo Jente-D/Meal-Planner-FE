@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 
+
 @Component({
   selector: 'app-start-screen',
   standalone: true,
@@ -8,5 +9,4 @@ import { Component } from '@angular/core';
   styleUrl: './start-screen.component.css'
 })
 export class StartScreenComponent {
-
 }

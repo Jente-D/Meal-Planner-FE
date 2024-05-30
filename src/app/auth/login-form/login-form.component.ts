@@ -17,8 +17,8 @@ import {Router} from "@angular/router";
 export class LoginFormComponent {
   loginForm: FormGroup;
   passwordHidden: boolean = true;
-  // TODO verdijnt als gebruiker redirect word naar aangemelde pagina
-  successMessage: string | null = null;
+  submitted = false;
+  loginError: string | null = null;
 
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.loginForm = this.fb.group({
@@ -32,14 +32,17 @@ export class LoginFormComponent {
   }
 
   submitLoginForm(): void {
+    console.log('submitLoginForm called');
+    this.submitted = true;
     if (this.loginForm.valid) {
       const email = this.loginForm.get('email')?.value;
       const password = this.loginForm.get('password')?.value;
       this.authService.sendLoginRequest(email, password).subscribe(response => {
         this.authService.saveCredentialsLocally(email, password);
-        this.successMessage = 'Successfully logged in!';
         this.router.navigate(['welcome']);
-      });
+      }, error => {
+          this.loginError = 'Login failed. Please try again.'; // Zet de foutboodschap als de inlogpoging mislukt
+        });
     }
   }
 }

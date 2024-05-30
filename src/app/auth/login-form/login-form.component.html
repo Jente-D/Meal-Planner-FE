@@ -23,13 +23,13 @@
               </div>
             </div>
           </div>
+          @if(loginError){
+            <div class="alert alert-danger mt-3">
+              {{loginError}}
+            </div>
+          }
           <button type="submit" class="btn btn-primary mt-3">Sign in</button>
-          <!-- Add this success message div somewhere appropriate in your form -->
-          <div *ngIf="successMessage" class="alert alert-success">
-            {{ successMessage }}
-          </div>
         </form>
-
       </div>
     </div>
   </div>
