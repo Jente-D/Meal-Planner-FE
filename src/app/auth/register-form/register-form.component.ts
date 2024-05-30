@@ -20,6 +20,8 @@ export class RegisterFormComponent {
   submitted = false;
   passwordFeedback: FeedbackResult= { score: 0, feedback: { warning: '', suggestions: [] } };
   passwordStrength: number = 0;
+  errorMessage: string | null = null;
+  passwordHidden: boolean = true;
 
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.registerForm = this.fb.group({
@@ -68,7 +70,6 @@ export class RegisterFormComponent {
     }
   }
 
-
   SubmitRegister() {
     this.submitted = true;
     if (this.registerForm.valid) {
@@ -81,12 +82,18 @@ export class RegisterFormComponent {
         },
         error => {
           // handle error here
-          console.error('Registration error', error);
+          if (error.status === 500) { // 409 Conflict is often used when resource already exists
+            this.errorMessage = 'Unable to register. Please try again or login if you already have an account.';
+          }
         }
       );
     } else {
-      console.error('Form is not valid');
+      this.errorMessage = 'Form is not valid';
       this.registerForm.markAllAsTouched();
     }
+  }
+
+  togglePasswordVisibility() {
+    this.passwordHidden = !this.passwordHidden;
   }
 }
