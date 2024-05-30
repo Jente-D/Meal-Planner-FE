@@ -38,7 +38,7 @@ export class LoginFormComponent {
       this.authService.sendLoginRequest(email, password).subscribe(response => {
         this.authService.saveCredentialsLocally(email, password);
         this.successMessage = 'Successfully logged in!';
-        this.router.navigate(['']);
+        this.router.navigate(['welcome']);
       });
     }
   }
