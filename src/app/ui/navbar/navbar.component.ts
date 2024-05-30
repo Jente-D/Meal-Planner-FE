@@ -18,12 +18,14 @@ class LogoutStatusService {
 export class NavbarComponent {
   constructor(protected authService: AuthService, private router: Router, private logoutService: LogoutService) {}
 
-  LogoutClick(): void{
-    this.authService.logout();
-    this.logoutService.changeStatus(true);
-    setTimeout(() => {
-      this.router.navigate(['/']);
-      this.logoutService.changeStatus(false);
-    }, 8000);
+  LogoutClick(): void {
+    if (confirm('Are you sure you want to logout? This will end your current session.')) {
+      this.authService.logout();
+      this.logoutService.changeStatus(true);
+      setTimeout(() => {
+        this.router.navigate(['/']);
+        this.logoutService.changeStatus(false);
+      }, 8000);
+    }
   }
 }
