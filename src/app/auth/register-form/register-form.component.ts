@@ -3,13 +3,14 @@ import {AuthService} from "../auth.service";
 import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {CommonModule} from "@angular/common";
+import {FeedbackResult} from "angular-password-strength-meter";
 
 @Component({
   selector: 'app-register-form',
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
   ],
   templateUrl: './register-form.component.html',
   styleUrl: './register-form.component.css'
@@ -17,6 +18,8 @@ import {CommonModule} from "@angular/common";
 export class RegisterFormComponent {
   registerForm: FormGroup;
   submitted = false;
+  passwordFeedback: FeedbackResult= { score: 0, feedback: { warning: '', suggestions: [] } };
+  passwordStrength: number = 0;
 
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.registerForm = this.fb.group({
@@ -31,6 +34,40 @@ export class RegisterFormComponent {
       ]),
     });
   }
+
+  checkPasswordStrength(password: string) {
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasLowerCase = /[a-z]/.test(password);
+    const hasNumber = /\d/.test(password);
+    const hasSpecialChar = /[.?!]/.test(password);
+    const isLongEnough = password.length >= 12;
+
+    this.passwordStrength = 0;
+
+    if (hasUpperCase) {
+      this.passwordStrength++;
+    }
+    if (hasLowerCase) {
+      this.passwordStrength++;
+    }
+    if (hasNumber) {
+      this.passwordStrength++;
+    }
+    if (hasSpecialChar) {
+      this.passwordStrength++;
+    }
+    if (isLongEnough) {
+      this.passwordStrength++;
+    }
+  }
+
+  onPasswordChange() {
+    const password = this.registerForm.get('password')?.value;
+    if (password) {
+      this.checkPasswordStrength(password);
+    }
+  }
+
 
   SubmitRegister() {
     this.submitted = true;
