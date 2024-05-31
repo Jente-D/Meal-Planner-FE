@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import {AuthService} from "../auth.service";
 import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {Router} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import {CommonModule} from "@angular/common";
 import {FeedbackResult} from "angular-password-strength-meter";
+import {RegisterRequestService} from "../register-request/register-request.service";
 
 @Component({
   selector: 'app-register-form',
@@ -23,11 +23,11 @@ export class RegisterFormComponent {
   errorMessage: string | null = null;
   passwordHidden: boolean = true;
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
+  constructor(private fb: FormBuilder, private registerService: RegisterRequestService, private router: Router) {
     this.registerForm = this.fb.group({
       email: new FormControl('', [
         Validators.required,
-        Validators.pattern('^[a-zA-Z0-9.\\-_]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$')
+        Validators.pattern('^[a-zA-Z0-9.\\-_\\+]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$')
       ]),
       password: new FormControl('', [
         Validators.required,
@@ -74,14 +74,15 @@ export class RegisterFormComponent {
     this.submitted = true;
     if (this.registerForm.valid) {
       const formValue = this.registerForm.value;
-      this.authService.register(formValue).subscribe(
+      this.registerService.requestAccount(formValue).subscribe(
         response => {
           // handle successful registration here
           console.log('Registration successful', response);
-          this.router.navigate(['']); // navigate to home page
+          this.router.navigate(['verify']); // navigate to home page
         },
         error => {
           // handle error here
+          console.log('Registration error', error);
           if (error.status === 500) { // 409 Conflict is often used when resource already exists
             this.errorMessage = 'Unable to register. Please try again or login if you already have an account.';
           }
