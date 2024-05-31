@@ -44,8 +44,41 @@ h4 {
 }
 
 
-.footer {
+.footer{
   background-color: #5e935e;
   color: #fff;
   font-family: 'Satisfy', cursive;
 }
+.navbar{
+  background-color: #5e935e;
+  color: #fff;
+  font-family: 'Satisfy', cursive;
+}
+
+.btn-outline{
+  border-color: white;
+  color: white;
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
+.d-flex {
+  justify-content: space-between;
+}
+/*PASSWORD*/
+.strength-bar {
+  display: flex;
+}
+
+.strength-bar div {
+  width: 20%;
+  height: 10px;
+  margin-right: 0.3rem;
+  border-radius: 5px;
+  background-color: #dfdddd;
+}
+
+.strength-bar div.filled {
+  background-color: #5e935e;
+}
+
