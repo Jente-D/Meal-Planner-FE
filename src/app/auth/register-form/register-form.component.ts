@@ -3,7 +3,11 @@ import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} fr
 import {Router, RouterLink} from "@angular/router";
 import {CommonModule} from "@angular/common";
 import {FeedbackResult} from "angular-password-strength-meter";
-import {RegisterRequestService} from "../register-request/register-request.service";
+import {MatDialog} from "@angular/material/dialog";
+import {
+  RegistrationSuccesDialogComponent
+} from "../register/registration-succes-dialog/registration-succes-dialog.component";
+import {AuthService} from "../auth.service";
 
 @Component({
   selector: 'app-register-form',
@@ -23,7 +27,7 @@ export class RegisterFormComponent {
   errorMessage: string | null = null;
   passwordHidden: boolean = true;
 
-  constructor(private fb: FormBuilder, private registerService: RegisterRequestService, private router: Router) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, public dialog:MatDialog) {
     this.registerForm = this.fb.group({
       email: new FormControl('', [
         Validators.required,
@@ -74,27 +78,31 @@ export class RegisterFormComponent {
     this.submitted = true;
     if (this.registerForm.valid) {
       const formValue = this.registerForm.value;
-      this.registerService.requestAccount(formValue).subscribe(
+      this.authService.register(formValue).subscribe(
         response => {
           // handle successful registration here
           console.log('Registration successful', response);
-          this.router.navigate(['verify']); // navigate to home page
+          this.openDialog();
         },
         error => {
-          // handle error here
           console.log('Registration error', error);
-          if (error.status === 500) { // 409 Conflict is often used when resource already exists
+          if (error.status === 500) {
             this.errorMessage = 'Unable to register. Please try again or login if you already have an account.';
           }
         }
       );
-    } else {
-      this.errorMessage = 'Form is not valid';
-      this.registerForm.markAllAsTouched();
     }
   }
 
   togglePasswordVisibility() {
     this.passwordHidden = !this.passwordHidden;
+  }
+
+  openDialog(){
+    const dialogRef = this.dialog.open(RegistrationSuccesDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 }
