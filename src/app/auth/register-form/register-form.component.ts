@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
-import {AuthService} from "../auth.service";
 import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {Router} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import {CommonModule} from "@angular/common";
 import {FeedbackResult} from "angular-password-strength-meter";
+import {MatDialog} from "@angular/material/dialog";
+import {
+  RegistrationSuccesDialogComponent
+} from "../register/registration-succes-dialog/registration-succes-dialog.component";
+import {AuthService} from "../auth.service";
 
 @Component({
   selector: 'app-register-form',
@@ -23,11 +27,11 @@ export class RegisterFormComponent {
   errorMessage: string | null = null;
   passwordHidden: boolean = true;
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, public dialog:MatDialog) {
     this.registerForm = this.fb.group({
       email: new FormControl('', [
         Validators.required,
-        Validators.pattern('^[a-zA-Z0-9.\\-_]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$')
+        Validators.pattern('^[a-zA-Z0-9.\\-_\\+]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$')
       ]),
       password: new FormControl('', [
         Validators.required,
@@ -78,22 +82,27 @@ export class RegisterFormComponent {
         response => {
           // handle successful registration here
           console.log('Registration successful', response);
-          this.router.navigate(['']); // navigate to home page
+          this.openDialog();
         },
         error => {
-          // handle error here
-          if (error.status === 500) { // 409 Conflict is often used when resource already exists
+          console.log('Registration error', error);
+          if (error.status === 500) {
             this.errorMessage = 'Unable to register. Please try again or login if you already have an account.';
           }
         }
       );
-    } else {
-      this.errorMessage = 'Form is not valid';
-      this.registerForm.markAllAsTouched();
     }
   }
 
   togglePasswordVisibility() {
     this.passwordHidden = !this.passwordHidden;
+  }
+
+  openDialog(){
+    const dialogRef = this.dialog.open(RegistrationSuccesDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 }

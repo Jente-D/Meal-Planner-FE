@@ -25,16 +25,12 @@ export class AuthService {
   }
 
   saveCredentialsLocally(email: string, password: string): void{
-    //   Convert plaintext cerdentials to basic auth token
     const authToken = window.btoa(email + ':' + password);
-    //   Build up user object (with username and roles) for keeping logged in user's info
     const loggedInUser = {
       "email": email,
       "basicAuthToken": authToken
     }
-    //   save token to localstorage to stay logged in (can also choose cookies)
     localStorage.setItem('loggedInUser', JSON.stringify(loggedInUser))
-    //   set this service's user so usful info like roles/username can be accesed everywher in the app
     this.user = loggedInUser;
   }
 

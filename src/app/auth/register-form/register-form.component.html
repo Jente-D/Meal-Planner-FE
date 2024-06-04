@@ -6,7 +6,7 @@
         <h3>and kickstart your journey to a healthier lifestyle – it's free!</h3>
       </div>
       <div class="col-4 mb-4">
-        <form [formGroup]="registerForm" (ngSubmit)="SubmitRegister()">
+        <form [formGroup]="registerForm">
           <div class="form-group justify-content-left">
             <label for="exampleInputEmail1"><h5>Email address</h5></label>
             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" formControlName="email">
@@ -69,9 +69,8 @@
               {{errorMessage}}
             </div>
           }
-          <button type="submit" class="btn btn-alert mt-3">Submit</button>
+          <button type="submit" class="btn btn-alert mt-3" (click)="SubmitRegister()">Submit</button>
         </form>
-
       </div>
     </div>
   </div>
