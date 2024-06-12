@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {LogoutService} from "../../auth/logout.service";
+import {LogoutService} from "../../auth/logout/logout.service";
 
 
 @Component({
