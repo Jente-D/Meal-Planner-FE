@@ -85,3 +85,12 @@ h4 {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+a {
+  color: white;
+}
+
+a.active {
+  color: #b8b3b3;
+}

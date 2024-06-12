@@ -1,0 +1,7 @@
+a {
+  color: white;
+}
+
+a.active {
+  color: #b8b3b3;
+}
