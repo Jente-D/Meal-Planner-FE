@@ -1,9 +1,8 @@
 #hero-section {
   position: relative;
   color: #272e5d;
-  background-image: url("assets/img/background.jpeg");
+  background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url("assets/img/background.jpeg");
   background-size: cover ;
-  background-position: top center;
   margin-bottom: 20px;
 }
 
@@ -85,12 +84,3 @@ h4 {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-
-a {
-  color: white;
-}
-
-a.active {
-  color: #b8b3b3;
-}
