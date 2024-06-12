@@ -85,3 +85,25 @@ h4 {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/*Froms*/
+.form-group {
+  background-color: #f0f0f0;
+  padding-inline: 30px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 2rem;
+}
+
+.form-group input {
+  margin-bottom: 5px;
+  width: 100%;
+  max-width: 100px;
+  border-bottom: #5e935e;
+  border: none;
+}

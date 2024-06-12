@@ -18,7 +18,9 @@ export class MenuService {
     return this.httpClient.get(this.URL);
   }
 
-  getMealByCalories(): Observable<any> {
-    return this.httpClient.get(this.BASE_API_URL + '/filter');
+
+  getMealByCalories(minCalories: number, maxCalories: number): Observable<Meal[]> {
+    const url = `${this.URL}/filter?minCalories=${minCalories}&maxCalories=${maxCalories}`;
+    return this.httpClient.get<Meal[]>(url);
   }
 }
