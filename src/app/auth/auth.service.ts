@@ -16,7 +16,7 @@ export class AuthService {
     return this.httpClient.post(this.AUTH_URL+'/register', userData)
   }
   activateAccount(token: string): Observable<any> {
-    return this.httpClient.post('http://localhost:8080/api/v1/auth/confirm', { token: token });
+    return this.httpClient.get(`http://localhost:8080/api/v1/auth/confirm?token=${token}`);
   }
 
 
