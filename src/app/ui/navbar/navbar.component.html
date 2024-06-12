@@ -5,6 +5,7 @@
         <img src="assets/img/neutriTech-logo.png" alt="" width="90" class="d-inline-block align-text-top">
       </a>
       @if(authService.isLoggedIn()){
+      <a routerLink="/meals">Menu Items</a>
       <button class="btn btn-outline" type="submit" (click)="LogoutClick()">logout</button>
       }
     </div>
