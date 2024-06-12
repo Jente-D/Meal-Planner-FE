@@ -1,0 +1,13 @@
+<mat-dialog-content>
+  <div>
+    <h1> You are about to Logout...</h1>
+  </div>
+  <h3>Are you sure you want to logout?</h3>
+  <p>This will end your current session, unsaved meal-plans wil be deleted...</p>
+<mat-dialog-actions>
+  <div>
+  <button mat-button class="btn-alert" (click)="closeDialogAndNavigateToHome()">Yes, Log Me Out</button>
+  <button mat-button class="btn-primary" (click)="closeDialog()">Stay logged in, and return</button>
+  </div>
+</mat-dialog-actions>
+</mat-dialog-content>

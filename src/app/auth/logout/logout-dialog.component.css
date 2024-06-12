@@ -1,0 +1,16 @@
+mat-dialog-content{
+  background-color: rgb(147, 191, 147) !important;
+  box-shadow: #b8b3b3;
+}
+p,h3{
+  color:white;
+}
+h1 {
+  font-family: 'Satisfy', cursive;
+  font-size: 80px;
+  color: white;
+}
+
+.btn-alert{
+  margin-right: 2rem;
+}
