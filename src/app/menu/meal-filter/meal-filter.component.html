@@ -1,0 +1,12 @@
+<div class="container">
+  <form>
+    <div class="form-group">
+      <label for="minCalories">Minimum Calories</label>
+      <input type="number" id="minCalories" [(ngModel)]="minCalories" name="minCalories">
+      <label for="maxCalories">Maximum Calories</label>
+      <input type="number" id="maxCalories" [(ngModel)]="maxCalories" name="maxCalories">
+    <button type ="button" class="btn btn-primary" (click)="filterMeals()">Filter Meals</button>
+    </div>
+  </form>
+</div>
+

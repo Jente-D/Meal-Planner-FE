@@ -15,6 +15,7 @@ import {AuthService} from "../auth.service";
   imports: [
     ReactiveFormsModule,
     CommonModule,
+    RouterLink,
   ],
   templateUrl: './register-form.component.html',
   styleUrl: './register-form.component.css'

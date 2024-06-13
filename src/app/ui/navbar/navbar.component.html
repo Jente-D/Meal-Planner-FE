@@ -5,7 +5,11 @@
         <img src="assets/img/neutriTech-logo.png" alt="" width="90" class="d-inline-block align-text-top">
       </a>
       @if(authService.isLoggedIn()){
-      <button class="btn btn-outline" type="submit" (click)="LogoutClick()">logout</button>
+        <div class="d-flex justify-content-left mt-2">
+            <a class="nav-link px-3" aria-current="page" routerLink="/welcome" routerLinkActive="active">Home</a>
+            <a class="nav-link px-3" routerLink="/meals" routerLinkActive="active">Meals</a>
+        </div>
+        <button class="btn btn-outline" type="submit" (click)="LogoutClick()">logout</button>
       }
     </div>
   </div>
