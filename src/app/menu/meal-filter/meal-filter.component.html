@@ -5,8 +5,40 @@
       <input type="number" id="minCalories" [(ngModel)]="minCalories" name="minCalories">
       <label for="maxCalories">Maximum Calories</label>
       <input type="number" id="maxCalories" [(ngModel)]="maxCalories" name="maxCalories">
-    <button type ="button" class="btn btn-primary" (click)="filterMeals()">Filter Meals</button>
+      <button type ="button" class="btn btn-primary" (click)="filterMeals()">Filter Meals</button>
     </div>
   </form>
+  <h3>Create a Plan</h3>
+  <form>
+    <div class="form-group">
+      <label for="totalCalories">Total Calories</label>
+      <input type="number" id="totalCalories" [(ngModel)]="totalCalories" name="totalCalories">
+    </div>
+    @for(mealType of mealTypes; track meals){
+      <div>
+        <input type="checkbox" id="{{mealType}}" [(ngModel)]="selectedMealTypes[mealType]" name="{{mealType}}">
+        <label for="{{mealType}}">{{mealType}}</label>
+      </div>
+    }
+    <button type ="button" class="btn btn-primary" (click)="createDailyMealPlan()">Create Daily Meal Plan</button>
+  </form>
+
+  <h3>Daily Meal Plan</h3>
+  @if(dailyMealPlan){
+    @for(meal of dailyMealPlan.meals; track mealTypes){
+      <div class="card-group">
+        <div class="card h-100" style="width: 18rem;">
+          <img [src] ="meal.imgUrl" class="card-img-top" alt="{{ meal.title }}" fill>
+          <div class="card-body">
+            <h5 class="card-title">{{ meal.title }}</h5>
+            <p class="card-text">{{ meal.mealType }}</p>
+            <p>{{meal.calories}}</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+    }
+  }
 </div>
+
 

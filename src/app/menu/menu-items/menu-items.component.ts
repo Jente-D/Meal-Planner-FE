@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Meal} from "../meal";
+import {Meal} from "../meal/meal";
 import {MenuService} from "../menu.service";
 import {MealFilterComponent} from "../meal-filter/meal-filter.component";
 import {NgOptimizedImage} from "@angular/common";
