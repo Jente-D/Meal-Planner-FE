@@ -1,22 +1,74 @@
-
 /*Froms*/
 .form-group {
   background-color: #f0f0f0;
-  padding-inline: 30px;
-  padding-top: 15px;
+  padding-inline: 50px;
+  padding-top: 10px;
   padding-bottom: 15px;
   border-radius: 5px;
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
-  gap: 10px;
   margin-bottom: 2rem;
+  min-height: 4rem;
+  align-items: center;
 }
 
-.form-group input {
-  margin-bottom: 5px;
-  width: 100%;
-  max-width: 100px;
-  border-bottom: #5e935e;
-  border: none;
+input#totalCalories {
+  border: transparent;
+  width: 50%;
+  padding: 10px;
+  margin-left: 2rem;
+  color: #333;
+  background-color: #f9f9f9;
+  border-bottom-color: #5e935e;
+}
+
+
+ .container.bg-light {
+   background-color: #f8f9fa;
+   border-radius: 0.25rem;
+ }
+
+
+/* Verberg de standaard checkbox */
+input[type="checkbox"] {
+  display: none;
+}
+
+/* Maak een nieuwe box */
+input[type="checkbox"] + label {
+  position: relative;
+  padding-left: 35px;
+  cursor: pointer;
+  display: inline-block;
+  color: #666;
+}
+
+/* Maak een nieuwe box */
+input[type="checkbox"] + label:before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  border: 2px solid #daa612;
+  border-radius: 50%; /* Maak de box rond */
+  position: absolute;
+  left: 0;
+}
+
+/* Toon de checkmark wanneer de checkbox is aangevinkt */
+input[type="checkbox"]:checked + label:after {
+  content: "";
+  display: inline-block;
+  width: 5px;
+  height: 10px;
+  border: solid #daa612;
+  border-width: 0 3px 3px 0;
+  position: absolute;
+  left: 10px;
+  top: 5px;
+  transform: rotate(45deg);
+}
+
+.info-icon {
+  color: #5e935e;
 }

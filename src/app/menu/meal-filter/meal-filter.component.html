@@ -1,44 +1,66 @@
 <div class="container">
-  <form>
-    <div class="form-group">
-      <label for="minCalories">Minimum Calories</label>
-      <input type="number" id="minCalories" [(ngModel)]="minCalories" name="minCalories">
-      <label for="maxCalories">Maximum Calories</label>
-      <input type="number" id="maxCalories" [(ngModel)]="maxCalories" name="maxCalories">
-      <button type ="button" class="btn btn-primary" (click)="filterMeals()">Filter Meals</button>
-    </div>
-  </form>
-  <h3>Create a Plan</h3>
-  <form>
-    <div class="form-group">
-      <label for="totalCalories">Total Calories</label>
-      <input type="number" id="totalCalories" [(ngModel)]="totalCalories" name="totalCalories">
-    </div>
-    @for(mealType of mealTypes; track meals){
-      <div>
-        <input type="checkbox" id="{{mealType}}" [(ngModel)]="selectedMealTypes[mealType]" name="{{mealType}}">
-        <label for="{{mealType}}">{{mealType}}</label>
-      </div>
-    }
-    <button type ="button" class="btn btn-primary" (click)="createDailyMealPlan()">Create Daily Meal Plan</button>
-  </form>
-
-  <h3>Daily Meal Plan</h3>
-  @if(dailyMealPlan){
-    @for(meal of dailyMealPlan.meals; track mealTypes){
-      <div class="card-group">
-        <div class="card h-100" style="width: 18rem;">
-          <img [src] ="meal.imgUrl" class="card-img-top" alt="{{ meal.title }}" fill>
-          <div class="card-body">
-            <h5 class="card-title">{{ meal.title }}</h5>
-            <p class="card-text">{{ meal.mealType }}</p>
-            <p>{{meal.calories}}</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+<!--  <form>-->
+<!--    <div class="form-group">-->
+<!--      <label for="minCalories">Minimum Calories</label>-->
+<!--      <input type="number" id="minCalories" [(ngModel)]="minCalories" name="minCalories">-->
+<!--      <label for="maxCalories">Maximum Calories</label>-->
+<!--      <input type="number" id="maxCalories" [(ngModel)]="maxCalories" name="maxCalories">-->
+<!--      <button type ="button" class="btn btn-primary" (click)="filterMeals()">Filter Meals</button>-->
+<!--    </div>-->
+<!--  </form>-->
+  <div class="container">
+    <h3>Create your WeekPlan</h3>
+    <div class="row">
+      <form class="col-lg-6 col-md-12">
+        <div class="form-group">
+          <label for="totalCalories">Total Calories</label>
+          <button class="mr-2" mat-icon-button
+                  matTooltip="Daily calorie needs vary based on age, gender, activity level, and health goals.</br>
+                  Some average for adults:
+                  Women: 1,600 to 2,400 calories per day
+                  Men: 2,000 to 3,000 calories per day">
+            <mat-icon class="info-icon">info</mat-icon>
+          </button>
+          <input type="number" id="totalCalories" [(ngModel)]="totalCalories" name="totalCalories" class="form-control">
+        </div>
+      </form>
+      <form class="col-lg-6 col-md-12">
+        <div class="form-group">
+          <div class="d-flex flex-wrap">
+            @for(mealType of mealTypes; track meals){
+              <div class="form-check">
+                <input type="checkbox" id="{{mealType}}" [(ngModel)]="selectedMealTypes[mealType]" name="{{mealType}}" [checked]="['breakfast', 'lunch', 'dinner', 'snack'].includes(mealType)" class="form-check-input">
+                <label for="{{mealType}}">{{mealType}}</label>
+              </div>
+            }
           </div>
         </div>
+      </form>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <button type="button" class="btn btn-primary mb-5" (click)="createDailyMealPlan()">Create Daily Meal Plan</button>
       </div>
+    </div>
+
+  <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center mt-2 mb-5">
+    @if(dailyMealPlan){
+      @for(meal of dailyMealPlan.meals; track mealTypes){
+        <div class="card-group">
+          <div class="card h-100" style="width: 18rem;">
+            <img [src] ="meal.imgUrl" class="card-img-top" alt="{{ meal.title }}" fill>
+            <div class="card-body">
+              <h5 class="card-title">{{ meal.title }}</h5>
+              <p class="card-text">{{ meal.mealType }}</p>
+              <p>{{meal.calories}}</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+      }
     }
-  }
+  </div>
 </div>
+
 
 

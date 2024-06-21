@@ -4,11 +4,13 @@ import {MenuService} from "../menu.service";
 import {FormsModule} from "@angular/forms";
 import {MealType} from "../meal/meal-type";
 import {DailyMealPlan} from "../meal/daily-meal-plan";
+import {MatIcon} from "@angular/material/icon";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @Component({
   selector: 'app-meal-filter',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, MatIcon, MatTooltipModule],
   templateUrl: './meal-filter.component.html',
   styleUrl: './meal-filter.component.css'
 })
@@ -25,6 +27,7 @@ export class MealFilterComponent {
 
   constructor(private  menuService: MenuService) {
     this.filterMeals();
+    this.initializeSelectedMealTypes();
   }
 
 
@@ -33,6 +36,15 @@ export class MealFilterComponent {
       this.meals = meals;
       this.mealsFiltered.emit(this.meals);
     });
+  }
+
+  private initializeSelectedMealTypes(): void {
+    this.selectedMealTypes = {
+      [MealType.BREAKFAST]: true,
+      [MealType.LUNCH]: true,
+      [MealType.DINNER]: true,
+      [MealType.SNACK]: true
+    };
   }
 
 

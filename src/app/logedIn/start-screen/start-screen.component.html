@@ -2,8 +2,52 @@
   <div class="container">
     <div class="row mt-5 text-center" id="profile-banner">
       <h1> Welcome ...!</h1>
-      <h3> Let's start planning your healthy life</h3>
+      <h3> This is your home dashboard for planning your healthy lifestyle</h3>
+      <div>
+        <button class="btn-alert" routerLink="/meals">Create your meal plan</button>
+      </div>
     </div>
+
+    <div class="WeekPlan">
+      <div class="container mb-5">
+        <h2 data-aos="zoom-in-up" class="aos-init aos-animate">Week plan</h2>
+        <div class="timetable">
+
+          <!-- Schedule Top Navigation -->
+          <nav class="nav nav-tabs">
+            <a class="nav-link active">Mon</a>
+            <a class="nav-link">Tue</a>
+            <a class="nav-link">Wed</a>
+            <a class="nav-link">Thu</a>
+            <a class="nav-link">Fri</a>
+            <a class="nav-link">Sat</a>
+            <a class="nav-link">Sun</a>
+          </nav>
+
+
+          <div class="tab-content">
+            <div class="tab-pane show active">
+              <div class="row">
+
+                <!-- Schedule Item 1 -->
+                <div class="card-group">
+                  <div class="card h-100" style="width: 18rem;">
+                    <img [src] ="" class="card-img-top" alt="" fill>
+                    <div class="card-body">
+                      <h5 class="card-title">Test</h5>
+                      <p class="card-text">lorum</p>
+                      <p>hallo test</p>
+                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     @if(logoutMessage){
       <div class="alert alert-success mt-3">
         <p> {{ logoutMessage }} </p>
