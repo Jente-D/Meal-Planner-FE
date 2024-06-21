@@ -84,3 +84,8 @@ h4 {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+}

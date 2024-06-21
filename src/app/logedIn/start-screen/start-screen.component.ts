@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
 import {LogoutService} from "../../auth/logout/logout.service";
+import {RouterLink} from "@angular/router";
 
 
 @Component({
   selector: 'app-start-screen',
   standalone: true,
-  imports: [],
+  imports: [
+    RouterLink
+  ],
   templateUrl: './start-screen.component.html',
   styleUrl: './start-screen.component.css'
 })
