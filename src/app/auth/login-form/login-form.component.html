@@ -2,10 +2,10 @@
   <div class="container">
     <div class="row text-center justify-content-center">
       <div class="col-12 mb-4">
-        <h1>Login</h1>
+        <h1 class="login-title">Login</h1>
         <h3>and start planning your week!</h3>
       </div>
-      <div class="col-4 mb-4">
+      <div class="col-md-4 col-12 mb-4">
         <form [formGroup]="loginForm" (ngSubmit)="submitLoginForm()">
           <div class="form-group justify-content-left">
             <label for="email"><h5>Email address</h5></label>
@@ -17,24 +17,25 @@
             <div class="input-group">
               <input [type]="passwordHidden ? 'password' : 'text'" class="form-control" id="password" placeholder="Password" formControlName="password">
               <div class="input-group-append">
-                <button type="button" (click)="togglePasswordVisibility()" class="btn btn-outline-secondary">
-                  {{ passwordHidden ? 'Show' : 'Hide' }}
+                <button type="button" (click)="togglePasswordVisibility()" class="btn btn-outline-secondary password-toggle">
+                  <span class="d-md-inline d-none">{{ passwordHidden ? 'Show' : 'Hide' }}</span>
+                  <span class="d-md-none">{{ passwordHidden ? '👁️' : '🚫' }}</span>
                 </button>
               </div>
             </div>
           </div>
           @if(loginError){
-            <div class="alert alert-danger mt-3">
-              {{loginError}}
-            </div>
+          <div class="alert alert-danger mt-3">
+          {{loginError}}
+          </div>
           }
           <button type="submit" class="btn btn-alert mt-3">Sign in</button>
         </form>
         <div class="mt-4">
-        <p>Don't account yet?</p>
+          <p>Don't account yet?</p>
           <button class="btn btn-primary mb-2" routerLink="/register">Register for free</button>
         </div>
-        </div>
+      </div>
     </div>
   </div>
 </div>

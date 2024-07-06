@@ -1,0 +1,9 @@
+@media (max-width: 768px) {
+  .login-title {
+    font-size: 40px;
+  }
+
+  .password-toggle {
+    width: 40px;
+  }
+}
